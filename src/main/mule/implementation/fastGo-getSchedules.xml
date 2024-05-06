@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<db:config name="Database_Config1" doc:name="Database Config" doc:id="d1882a7e-d635-45d8-a0b0-f932bec4257c" >
+		<db:my-sql-connection host="${db.AWS.host}" port="${db.AWS.port}" user="${db.AWS.user}" password="${db.AWS.password}" database="${db.AWS.database}" />
+	</db:config>
+	<flow name="fastGo-getSchedulesFlow" doc:id="4be3d297-3d16-4bd8-a493-5425d882abf7" >
+		<db:select doc:name="Select" doc:id="ea63642b-a521-4f2e-8c3e-f789fbecb422" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from getSchedules where companyName = "TravelOnTip"]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="baa22cc5-1658-4fc3-94af-ea87ecb2a565" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

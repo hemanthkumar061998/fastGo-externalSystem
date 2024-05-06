@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd"><http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="cc5b6e02-ade0-47ae-af0c-977328d8a15b" >
+		<http:listener-connection host="${http.listner.host}" port="${http.listner.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="42a4969e-8a06-48d9-bea5-1408395d6106" file="globalProperties\local.yaml" />
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="822caf4a-0571-4c53-b5ff-bd97154bf5fd" >
+		<db:my-sql-connection host="${db.AWS.host}" port="${db.AWS.port}" user="${db.AWS.user}" password="${db.AWS.password}" database="${db.AWS.database}" />
+	</db:config>
+</mule>

@@ -1,0 +1,14 @@
+http:
+  listner:
+    port: "8081"
+    host: "localhost"
+    path: "/FastGo/{serviceType}"
+db:
+  AWS:
+    host: "database-1.cdi6yeokmldb.ap-south-1.rds.amazonaws.com"
+    port: "3306"
+    user: "admin"
+    password: "admin1162"
+    database: "TravelCompany_db"
+    
+    
